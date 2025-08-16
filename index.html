@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, My Love</title>
+  <meta name="description" content="A simple, elegant birthday wish with a heartfelt message, fun facts, and a photo gallery." />
+  <meta property="og:title" content="Happy Birthday, My Love " />
+  <meta property="og:description" content="A simple, elegant birthday wish with a heartfelt message, fun facts, and a photo gallery." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ff7aa2" />
+  <style>
+    :root {
+      --bg: #fff9fb;
+      --card: #ffffff;
+      --text: #1b1b1b;
+      --muted: #6b7280;
+      --accent: #ff7aa2;
+      --accent-2: #ffd1dc;
+      --ring: rgba(255, 122, 162, 0.25);
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      background: var(--bg);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header.hero {
+      position: relative;
+      border-radius: calc(var(--radius) * 1.25);
+      background: radial-gradient(1200px 600px at 20% -10%, var(--accent-2), transparent),
+                  radial-gradient(900px 500px at 100% 0%, #ffe8ef, transparent),
+                  linear-gradient(180deg, #fff, #fff5f8);
+      padding: 64px 24px 72px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 56px);
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p.sub {
+      color: var(--muted);
+      margin: 0 0 16px 0;
+      font-size: clamp(14px, 2.5vw, 18px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #ffe0ea;
+      box-shadow: 0 6px 16px var(--ring);
+      font-weight: 600;
+      color: #d91e63;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid #f6e6ec;
+      position: relative;
+      
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .section-title {
+      margin: 28px 0 12px 0;
+      font-size: clamp(20px, 3.5vw, 28px);
+      letter-spacing: -0.01em;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .fact {
+      background: #fff;
+      border: 1px solid #f2e6eb;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .fact .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+
+    .fact .value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .message {
+      font-size: clamp(16px, 2.6vw, 20px);
+    }
+
+    .container-jasly {
+      position: relative;
+      z-index: 5;
+      padding: 20px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #f6e6ec;
+     
+    }
+
+    /* Bubbles */
+.bubble {
+    position: fixed; /* float relative to viewport */
+    border-radius: 50%;
+    pointer-events: auto;
+    transition: transform 0.2s ease, opacity 2s ease-in-out;
+    cursor: pointer;
+    opacity: 0.7;
+    z-index: 10; /* above content */
+}
+
+.bubble img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.background-bubble {
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 5; /* behind interactive stuff */
+}
+    /* Lyrics container and karaoke scrolling */
+    #lyrics {
+      margin-left: 10px;
+      font-weight: 600;
+      color: #d91e63;
+      max-height: 140px; /* smaller height so it scrolls */
+      width: 420px;
+      overflow: hidden;
+      position: relative;
+      display: block;
+      background: rgba(255,255,255,0.6);
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(217,30,99,0.08);
+      box-shadow: 0 6px 18px rgba(217,30,99,0.04);
+    }
+    .lyric-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.35s cubic-bezier(.2,.9,.3,1);
+      will-change: transform;
+    }
+    .lyric-line {
+      opacity: 0.45;
+      transition: opacity 0.25s, transform 0.25s;
+      transform: translateY(0);
+      font-size: 14px;
+      line-height: 1.2;
+      white-space: normal;
+    }
+    .lyric-line.prev-line { opacity: 0.6; transform: translateY(-4px); font-size: 13px; }
+    .lyric-line.current-line { opacity: 1; font-size: 15px; font-weight: 700; transform: translateY(0); color: #d91e63; }
+    .lyric-line.next-line { opacity: 0.45; transform: translateY(4px); }
+    /* Floating hearts */
+    .hearts { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .heart {
+    position: absolute;
+    width: 13px;
+    height: 12px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    animation: floatUp 8s linear infinite;
+    opacity: 0.5; /* increase base opacity */
+     }
+    .heart::before, .heart::after { content: ""; position: absolute; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+    .heart::before { top: -6px; left: 0; }
+    .heart::after { left: -6px; top: 0; }
+    @keyframes floatUp {
+    0% { transform: translateY(0) rotate(45deg); opacity: 0.6; } /* more visible at start */
+    100% { transform: translateY(-110vh) rotate(45deg); opacity: 0.4; } /* still fades slightly */
+    }
+    /* Controls */
+    .controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    button, .btn {
+      appearance: none; border: 0; background: var(--accent); color: white; padding: 10px 14px; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px var(--ring);
+    }
+    .btn.secondary { background: #fff; color: var(--text); border: 1px solid #f0e4ea; }
+    .muted { color: var(--muted); }
+    footer { color: var(--muted); text-align: center; padding: 40px 0 20px; }
+  </style>
+</head>
+<body>
+  <header class="hero container">
+    <div class="hearts" id="hearts"></div>
+    <h1>Happy 18th Birthday, <span style="color:#d91e63">My <em>jasuu..</em></span> ✨ 🎉 </h1>
+    <p class="sub">You make the ordinary feel magical. Today is for you.</p>
+    <span class="badge">27 September 2025</span>
+
+    <div style="margin-top:16px" class="controls">
+      <button id="playMusic" aria-label="Play music">Play Music</button>
+
+      <!-- Lyrics block: keep this exact structure -->
+      <div id="lyrics"><div class="lyric-inner"></div></div>
+
+      <button id="toggleHearts" class="btn secondary" aria-pressed="true">Toggle Hearts</button>
+      <!--<span class="muted">Tip, add <code>music.mp3</code> for background music.</span>-->
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <!-- Personal Message -->
+    <section class="card">
+      <h2 class="section-title">A Message For You</h2>
+      <p class="message">
+        I am grateful for you. Your warmth, your laughter, your stubbornness when you want something good, all of it.
+        I admire your courage and your heart. May this year bring you joy, growth, and everything you secretly hope for.
+        I am here, cheering for you, choosing you, praying for you every day. I want you to grow into a proverbs 31 woman.
+        God bless you jasuu...
+      </p>
+
+    </section>
+    
+    <div class="container-jasly" style="margin-top:16px">
+      <h1>Meaning of your name </h1>
+      <p><strong>English:</strong> Derived from Jasmine, meaning "gift from God" or "flower".</p>
+      <p><strong>Hindi:</strong> चमेली (Chameli) – A fragrant flower symbolizing purity and love.</p>
+      <p><strong>Arabic:</strong> ياسمين (Yasmin) – Jasmine flower, representing beauty and grace.</p>
+      <p><strong>French:</strong> Jasmin – A symbol of elegance and affection.</p>
+    </div> 
+    
+    <!-- Facts -->
+    <section class="card" style="margin-top:16px">
+      <h2 class="section-title">Fun Facts About You</h2>
+      <div class="facts">
+
+<!-- Background Bubbles -->
+<div class="bubble background-bubble" style="width:120px;height:120px;"><img src="image1.jpg"></div>
+<div class="bubble background-bubble" style="width:100px;height:100px;"><img src="image2.jpg"></div>
+<div class="bubble background-bubble" style="width:140px;height:140px;"><img src="image3.jpg"></div>
+<div class="bubble background-bubble" style="width:90px;height:90px;"><img src="image4.jpg"></div>
+<div class="bubble background-bubble" style="width:110px;height:110px;"><img src="image5.jpg"></div>
+<div class="bubble background-bubble" style="width:140px;height:140px;"><img src="image6.jpg"></div>
+<div class="bubble background-bubble" style="width:120px;height:120px;"><img src="image7.jpg"></div>
+
+<!-- Foreground Bubbles -->
+
+<div class="bubble" style="width:80px;height:80px;"><img src="image8.jpg"></div>
+<div class="bubble" style="width:140px;height:140px;"><img src="image9.jpg"></div>
+<div class="bubble" style="width:110px;height:110px;"><img src="image10.jpg"></div>
+<div class="bubble" style="width:100px;height:100px;"><img src="image11.jpg"></div>
+<div class="bubble" style="width:120px;height:120px;"><img src="image12.jpg"></div>
+<div class="bubble" style="width:100px;height:100px;"><img src="image13.jpg"></div>
+<div class="bubble" style="width:120px;height:120px;"><img src="image14.jpg"></div>
+
+        <!-- Core facts -->
+        <div class="fact"><div class="label">Exact age on 2025-09-27</div><div class="value">18 years</div></div>
+        <div class="fact"><div class="label">Born on</div><div class="value">Thursday</div></div>
+        <div class="fact"><div class="label">Next birthday</div><div class="value">2026-09-27, in 365 days</div></div>
+        <div class="fact"><div class="label">Half-birthday</div><div class="value">2026-03-27</div></div>
+
+        <!-- Time alive -->
+        <div class="fact"><div class="label">Days alive</div><div class="value">6,575</div></div>
+        <div class="fact"><div class="label">Weeks</div><div class="value">939</div></div>
+        <div class="fact"><div class="label">Hours</div><div class="value">157,800</div></div>
+        <div class="fact"><div class="label">Minutes</div><div class="value">9,468,000</div></div>
+        <div class="fact"><div class="label">Seconds</div><div class="value">568,080,000</div></div>
+
+        <!-- Zodiac & symbols -->
+        <div class="fact"><div class="label">Western Zodiac</div><div class="value">Libra</div></div>
+        <div class="fact"><div class="label">Chinese Zodiac</div><div class="value">Pig</div></div>
+        <div class="fact"><div class="label">Birthstone</div><div class="value">Sapphire</div></div>
+        <div class="fact"><div class="label">Birth flower</div><div class="value">Aster, Morning Glory</div></div>
+
+        <!-- Body stats -->
+        <div class="fact"><div class="label">Breaths taken</div><div class="value">≈ 151,488,000</div></div>
+        <div class="fact"><div class="label">Heartbeats</div><div class="value">≈ 710,100,000</div></div>
+        <div class="fact"><div class="label">Blood pumped</div><div class="value">≈ 49,707,000 L</div></div>
+        <div class="fact"><div class="label">Time sleeping</div><div class="value">52,600 h, 2,191.7 days</div></div>
+        <div class="fact"><div class="label">Time eating</div><div class="value">7,890 h, 328.8 days</div></div>
+         
+
+       <!-- Planets -->
+        <div class="fact"><div class="label">Age on Mercury</div><div class="value">74.74 years</div></div>
+        <div class="fact"><div class="label">Age on Venus</div><div class="value">29.26 years</div></div>
+        <div class="fact"><div class="label">Age on Mars</div><div class="value">9.57 years</div></div>
+        <div class="fact"><div class="label">Age on Jupiter</div><div class="value">1.52 years</div></div>
+        <div class="fact"><div class="label">Age on Saturn</div><div class="value">0.61 years</div></div>
+        <div class="fact"><div class="label">Age on Uranus</div><div class="value">0.214 years</div></div>
+        <div class="fact"><div class="label">Age on Neptune</div><div class="value">0.109 years</div></div>
+        <div class="fact"><div class="label">Age on Pluto</div><div class="value">0.073 years</div></div>
+
+
+        <!-- Animals -->
+        <div class="fact"><div class="label">If you were a Dog (12y)</div><div class="value">2.70 years</div></div>
+        <div class="fact"><div class="label">Cat (15y)</div><div class="value">3.38 years</div></div>
+        <div class="fact"><div class="label">Horse (27y)</div><div class="value">6.08 years</div></div>
+        <div class="fact"><div class="label">Mouse (2y)</div><div class="value">0.45 years</div></div>
+        <div class="fact"><div class="label">Cow (20y)</div><div class="value">4.50 years</div></div>
+        <div class="fact"><div class="label">Elephant (70y)</div><div class="value">15.75 years</div></div>
+        <div class="fact"><div class="label">Turtle (100y)</div><div class="value">22.50 years</div></div>
+        <div class="fact"><div class="label">Rabbit (9y)</div><div class="value">2.03 years</div></div>
+
+        <!-- Astronomical extras -->
+        <div class="fact"><div class="label">Sunrises seen</div><div class="value">≈ 6,575</div></div>
+        <div class="fact"><div class="label">Full moons</div><div class="value">≈ 223</div></div>
+        <div class="fact"><div class="label">Leap years lived</div><div class="value">5</div></div>
+        <div class="fact"><div class="label">Distance around the Sun</div><div class="value">≈ 16.92 billion km</div></div>
+      </div>
+
+      
+      <p class="muted" style="margin-top:8px">Assumptions, 16 breaths/min, 75 beats/min, 0.07 L/beat, 8 h sleep/day, 1.2 h eating/day.</p>
+
+    </section>
+
+    <script>
+const bubbles = document.querySelectorAll('.bubble');
+const speeds = [];
+const opacityDirections = [];
+
+bubbles.forEach((bubble, index) => {
+    const isBg = bubble.classList.contains('background-bubble');
+    const parent = isBg ? bubble.parentElement : document.body; // bg bubbles relative to section, fg to body
+
+    bubble.style.left = Math.random() * (parent.clientWidth - bubble.clientWidth) + 'px';
+    bubble.style.top = Math.random() * (parent.clientHeight - bubble.clientHeight) + 'px';
+
+    speeds[index] = {
+        x: (Math.random() * 2 - 1) * 1.5,
+        y: (Math.random() * 2 - 1) * 1.5
+    };
+    
+    opacityDirections[index] = Math.random() > 0.5 ? 1 : -1;
+
+    if (!isBg) {
+        function boostSpeed() {
+            speeds[index].x = (Math.random() * 4 - 2) * 4;
+            speeds[index].y = (Math.random() * 4 - 2) * 4;
+        }
+        bubble.addEventListener('mouseenter', boostSpeed);
+        bubble.addEventListener('touchstart', boostSpeed);
+    }
+});
+
+function animate() {
+    bubbles.forEach((bubble, index) => {
+        let x = parseFloat(bubble.style.left);
+        let y = parseFloat(bubble.style.top);
+        let w = bubble.clientWidth;
+        let h = bubble.clientHeight;
+
+        x += speeds[index].x;
+        y += speeds[index].y;
+
+        if (x <= 0 || x + w >= window.innerWidth) speeds[index].x *= -1;
+        if (y <= 0 || y + h >= window.innerHeight) speeds[index].y *= -1;
+
+        bubble.style.left = Math.max(0, Math.min(window.innerWidth - w, x)) + 'px';
+        bubble.style.top = Math.max(0, Math.min(window.innerHeight - h, y)) + 'px';
+
+        let currentOpacity = parseFloat(bubble.style.opacity);
+        currentOpacity += 0.005 * opacityDirections[index];
+        if (currentOpacity <= 0.3) opacityDirections[index] = 1;
+        if (currentOpacity >= 1) opacityDirections[index] = -1;
+        bubble.style.opacity = currentOpacity;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+
+</script>
+  </main>
+
+  <footer class="container">
+    <p>Made with love. No cookies, no tracking, just us.</p>
+  </footer>
+
+  <audio id="bgm" src="music.mp3" preload="none"></audio>
+
+  <script>
+    // Floating hearts generator
+    const hearts = document.getElementById('hearts');
+    let heartsEnabled = true;
+    function spawnHeart() {
+      if (!heartsEnabled) return;
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.bottom = '-20px';
+      h.style.animationDuration = 6 + Math.random() * 6 + 's';
+      h.style.opacity = 0.45 + Math.random() * 0.15;
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), 14000);
+    }
+    const heartsInterval = setInterval(spawnHeart, 600);
+
+    // Toggle hearts
+    document.getElementById('toggleHearts').addEventListener('click', (e) => {
+      heartsEnabled = !heartsEnabled;
+      e.currentTarget.setAttribute('aria-pressed', String(heartsEnabled));
+      e.currentTarget.textContent = heartsEnabled ? 'Toggle Hearts' : 'Hearts Off';
+
+      if (!heartsEnabled) {
+        // Remove all current hearts
+        const currentHearts = hearts.querySelectorAll('.heart');
+        currentHearts.forEach(h => h.remove());
+      }
+    });
+
+    // Background music controls
+    const bgm = document.getElementById('bgm');
+    const playBtn = document.getElementById('playMusic');
+    let playing = false;
+    playBtn.addEventListener('click', async () => {
+      try {
+        if (!playing) {
+          await bgm.play();
+          playing = true;
+          playBtn.textContent = 'Pause Music';
+        } else {
+          bgm.pause();
+          playing = false;
+          playBtn.textContent = 'Play Music';
+        }
+      } catch (err) {
+        alert('Add a file at music.mp3 and try again.');
+      }
+    });
+
+    // --- SYNCHRONIZED LYRICS ---
+    // keep the timestamps accurate to your audio file
+    const syncedLyrics = [
+      { time: 0.0, text: "Aah... ah-ah-aaah.. ah-ah-ah.. ah-ah-aah...🎶" },
+      { time: 16.5, text: "Oh, her eyes, her eyes...." },
+      { time: 19.5, text: "Make the stars look like they're not shinin.." },
+      { time: 22.0, text: "Her hair, her hair...." },
+      { time: 24.0, text: "Falls perfectly without her tryin.." },
+      { time: 27.0, text: "She's so beautiful..." },
+      { time: 29.0, text: "And I tell her every day....." },
+      { time: 34.5, text: "Yeah..., I know, I know....." },
+      { time: 37.0, text: "When I compliment her, she won't believe me..." },
+      { time: 40.0, text: "And it's so, it's so sad to think that she don't see what I see" },
+      { time: 44.5, text: "But every time she asks me, 'Do I look okay?'...." },
+      { time: 48.0, text: "I say...     When I see your face...." },
+      { time: 55.5, text: "There's not a thing that I would change..." },
+      { time: 60.0, text: "'Cause you're amazing..." },
+      { time: 63.5, text: "Just the way you are..." },
+      { time: 69.0, text: "And when you smile..." },
+      { time: 73.5, text: "The whole world stops and stares for a while.." },
+      { time: 78.0, text: "'Cause girl, you're amazing...." },
+      { time: 81.0, text: "Just the way you are... yeah..eh.." },
+      { time: 88.0, text: "Her lips, her lips...." },
+      { time: 90.0, text: "I could kiss them all day if she let me..." },
+      { time: 93.0, text: "Her laugh, her laugh..........." },
+      { time: 94.5, text: "She hates, but I think it's so sexy..." },
+      { time: 97.0, text: "She's so beautiful..." },
+      { time: 99.5, text: "And I tell her every day..." },
+      { time: 105.0, text: "Oh, you know, you know, you know I'd never ask you to change..." },
+      { time: 109.5, text: "If perfect's what you're searchin' for, then just stay the same.." },
+      { time: 114.0, text: "So don't even bother askin' if you look okay...." },
+      { time: 117.5, text: "You know I'll say..." },
+      { time: 121.5, text: "When I see your face..." },
+      { time: 126.0, text: "There's not a thing that I would change.." },
+      { time: 131.0, text: "'Cause you're amazing..." },
+      { time: 134.0, text: "Just the way you are..." },
+      { time: 139.5, text: "And when you smile..." },
+      { time: 143.5, text: "The whole world stops and stares for a while..." },
+      { time: 148.0, text: "'Cause girl, you're amazing..." },
+      { time: 151.7, text: "Just the way you are...." },
+      { time: 157.0, text: "The way you are...." },
+      { time: 161.5, text: "The way you are....." },
+      { time: 166.5, text: "Girl, you're amazing...." },
+      { time: 169.5, text: "Just the way you are..." },
+      { time: 174.5, text: "When I see your face...." },
+      { time: 179.0, text: "There's not a thing that I would change..." },
+      { time: 184.0, text: "'Cause you're amazing..." },
+      { time: 187.0, text: "Just the way you are..." },
+      { time: 192.0, text: "And when you smile...." },
+      { time: 196.5, text: "The whole world stops and stares for a while..." },
+      { time: 201.5, text: "'Cause girl, you're amazing..." },
+      { time: 204.5, text: "Just the way you are..." },
+      { time: 208.5, text: "Yeah....🎶" },
+    ];
+
+    // DOM references
+    const lyricsDiv = document.getElementById('lyrics');
+    const lyricInner = lyricsDiv.querySelector('.lyric-inner');
+
+    // Populate lyricInner only once
+    lyricInner.innerHTML = syncedLyrics.map(l => `<div class="lyric-line">${l.text}</div>`).join('');
+    const lyricLines = Array.from(lyricInner.querySelectorAll('.lyric-line'));
+
+    // Karaoke-style update + auto-scroll
+    function updateLyrics() {
+      const currentTime = (bgm && !isNaN(bgm.currentTime)) ? bgm.currentTime : 0;
+      let activeIndex = 0;
+
+      for (let i = 0; i < syncedLyrics.length; i++) {
+        if (currentTime >= syncedLyrics[i].time) activeIndex = i;
+        else break;
+      }
+
+      // update class names
+      lyricLines.forEach((line, index) => {
+        line.classList.remove('prev-line', 'current-line', 'next-line');
+        if (index < activeIndex) line.classList.add('prev-line');
+        else if (index === activeIndex) line.classList.add('current-line');
+        else line.classList.add('next-line');
+      });
+
+      // scroll lyricInner so activeIndex stays visible
+      if (lyricLines.length) {
+        const gap = 6; // matches CSS .lyric-inner gap
+        const lineHeight = lyricLines[0].offsetHeight + gap;
+        // keep two lines above current in view
+        const visibleIndex = Math.max(0, activeIndex - 2);
+        const offset = visibleIndex * lineHeight;
+        lyricInner.style.transform = `translateY(-${offset}px)`;
+      }
+
+      requestAnimationFrame(updateLyrics);
+    }
+
+    // start the update loop
+    requestAnimationFrame(updateLyrics);
+
+    // optional: if you want a fallback update when user seeks quickly, ensure immediate update
+    bgm.addEventListener('seeked', () => { updateLyrics(); });
+
+  </script>
+</body>
+</html>
