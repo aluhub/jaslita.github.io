@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Saruna ❤️</title>
+  <title>Happy Birthday Saru ❤️</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
       justify-content:center;
       align-items:center;
       position:relative;
-      z-index: 10; /* Keep sections neatly arranged */
+      z-index: 10;
     }
 
     .hero{
@@ -88,16 +88,31 @@
       text-align:center;
     }
 
+    .name-meaning-box {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(255,255,255,0.2);
+      text-align: center;
+    }
+
+    .name-meaning-box h4 {
+      color: #ff7ad9;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
     .section-title{
       font-size:3rem;
       margin-bottom:50px;
       text-align:center;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,122,217,0.5);
     }
 
     .facts-grid,
     .planet-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:25px;
       width:100%;
       max-width:1100px;
@@ -106,17 +121,26 @@
     .fact-card,
     .planet-card{
       text-align:center;
+      transition: transform 0.3s ease;
+    }
+    
+    .fact-card:hover, .planet-card:hover {
+      transform: translateY(-5px);
+      background:rgba(255,255,255,0.12);
     }
 
     .fact-card h3,
     .planet-card h3{
       margin-bottom:15px;
+      color: #ffb3e6;
+      font-size: 1.2rem;
     }
 
     .fact-card p,
     .planet-card p{
-      font-size:1.2rem;
+      font-size:1.3rem;
       color:#ffd6ff;
+      font-weight: 600;
     }
 
     /* --- FLOATING PHOTO FRAMES CLASS --- */
@@ -125,18 +149,18 @@
       bottom: -350px;
       width: 200px;
       background: white;
-      padding: 12px 12px 35px 12px; /* Polaroid frame look */
+      padding: 12px 12px 35px 12px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       border-radius: 4px;
       pointer-events: auto;
-      z-index: 5; /* Floats beneath cards, but over backgrounds */
+      z-index: 5;
       animation: floatUpPhoto linear forwards;
       transition: transform 0.3s ease;
     }
 
     .floating-frame:hover {
       transform: scale(1.1) rotate(0deg) !important;
-      z-index: 100; /* Pop to front on hover */
+      z-index: 100;
     }
 
     .floating-frame img {
@@ -151,12 +175,8 @@
         transform: translateY(0) rotate(-10deg);
         opacity: 0;
       }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
       100% {
         transform: translateY(-130vh) rotate(15deg);
         opacity: 0;
@@ -174,7 +194,6 @@
       transform:translateY(0);
     }
 
-    /* Subtle background stars grid */
     .stars::before{
       content:'';
       position:fixed;
@@ -192,7 +211,7 @@
       to{ transform:translateY(-500px); }
     }
 
-    /* --- FLOATING MAGIC VISIBLE TUNING --- */
+    /* --- FLOATING ELEMENTS SYSTEM --- */
     .heart {
       position: fixed;
       bottom: -50px;
@@ -201,7 +220,7 @@
       animation: floatHeart linear forwards;
       opacity: .8;
       pointer-events: none;
-      z-index: 50; /* Bring explicitly to the front */
+      z-index: 50;
     }
 
     @keyframes floatHeart {
@@ -219,7 +238,7 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       animation: floatBubble linear forwards;
       pointer-events: none;
-      z-index: 60; /* Floating clear of content */
+      z-index: 60;
     }
 
     @keyframes floatBubble {
@@ -249,7 +268,6 @@
       }
     }
 
-    /* Yellow Passing Particles Anim (Moved behind text) */
     @keyframes particleFade {
       0% {
         transform: translate(0, 0) scale(0);
@@ -286,14 +304,8 @@
     <div class="hero-content">
       <h1>Happy Birthday</h1>
       <h2>Saruna ❤️</h2>
-
-      <p class="intro">
-        A little universe made only for you.
-      </p>
-
-      <button id="startBtn">
-        Enter Your Universe ✨
-      </button>
+      <p class="intro">A little universe made only for you.</p>
+      <button id="startBtn">Enter Your Universe ✨</button>
     </div>
   </section>
 
@@ -308,84 +320,65 @@
         We promised to part only by death, and I mean that with all my heart.
         Happy Birthday Saruna ❤️
       </p>
+      <div class="name-meaning-box">
+        <h4>The Meaning of Saruna ✨</h4>
+        <p class="message" style="margin-top:5px; font-style: italic;">
+          Saruna carries deep melodic origins. It points to a cosmic guide—someone who acts as a gentle, guiding light to others. It is also tied closely to stringed music, representing a soul that brings harmony, structural warmth, and deep alignment into the lives of everyone she touches.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="facts-section hidden">
-    <h2 class="section-title">
-      The Science Of Saruna ✨
-    </h2>
-
+    <h2 class="section-title">The Biological Science Of Saruna 🧬</h2>
     <div class="facts-grid">
-      <div class="fact-card">
-        <h3>Age</h3>
-        <p id="age"></p>
-      </div>
+      <div class="fact-card"><h3>Age Reached</h3><p id="age"></p></div>
+      <div class="fact-card"><h3>Total Heartbeats</h3><p id="heartbeats"></p></div>
+      <div class="fact-card"><h3>Eye Blinks</h3><p id="blinks"></p></div>
+      <div class="fact-card"><h3>Total Blood Pumped</h3><p id="blood"></p></div>
+      <div class="fact-card"><h3>Breaths Taken</h3><p id="breaths"></p></div>
+      <div class="fact-card"><h3>Brain Electrical Signals</h3><p id="brainSignals"></p></div>
+      <div class="fact-card"><h3>Skin Cells Renewed</h3><p id="skinCells"></p></div>
+      <div class="fact-card"><h3>Liver Filtration Cycles</h3><p id="liverCycles"></p></div>
+    </div>
+  </section>
 
-      <div class="fact-card">
-        <h3>Heart Beats</h3>
-        <p id="heartbeats"></p>
-      </div>
-
-      <div class="fact-card">
-        <h3>Blinks</h3>
-        <p id="blinks"></p>
-      </div>
-
-      <div class="fact-card">
-        <h3>Blood Pumped</h3>
-        <p id="blood"></p>
-      </div>
-
-      <div class="fact-card">
-        <h3>Breaths Taken</h3>
-        <p id="breaths"></p>
-      </div>
-
-      <div class="fact-card">
-        <h3>Dog Years</h3>
-        <p id="dogYears"></p>
-      </div>
+  <section class="facts-section hidden">
+    <h2 class="section-title">Saruna's Life In Animal Years 🐾</h2>
+    <div class="facts-grid">
+      <div class="fact-card"><h3>Dog Years</h3><p id="dogYears"></p></div>
+      <div class="fact-card"><h3>Cat Years</h3><p id="catYears"></p></div>
+      <div class="fact-card"><h3>Horse Years</h3><p id="horseYears"></p></div>
+      <div class="fact-card"><h3>Lion Years</h3><p id="lionYears"></p></div>
     </div>
   </section>
 
   <section class="planet-section hidden">
-    <h2 class="section-title">
-      Saruna Across The Universe 🌌
-    </h2>
-
+    <h2 class="section-title">Saruna Across The Solar System 🪐</h2>
     <div class="planet-grid">
-      <div class="planet-card">
-        <h3>Mercury</h3>
-        <p id="mercuryAge"></p>
-      </div>
+      <div class="planet-card"><h3>Mercury Age</h3><p id="mercuryAge"></p></div>
+      <div class="planet-card"><h3>Venus Age</h3><p id="venusAge"></p></div>
+      <div class="planet-card"><h3>Mars Age</h3><p id="marsAge"></p></div>
+      <div class="planet-card"><h3>Jupiter Age</h3><p id="jupiterAge"></p></div>
+      <div class="planet-card"><h3>Saturn Age</h3><p id="saturnAge"></p></div>
+      <div class="planet-card"><h3>Uranus Age</h3><p id="uranusAge"></p></div>
+    </div>
+  </section>
 
-      <div class="planet-card">
-        <h3>Venus</h3>
-        <p id="venusAge"></p>
-      </div>
-
-      <div class="planet-card">
-        <h3>Mars</h3>
-        <p id="marsAge"></p>
-      </div>
-
-      <div class="planet-card">
-        <h3>Jupiter</h3>
-        <p id="jupiterAge"></p>
-      </div>
+  <section class="planet-section hidden">
+    <h2 class="section-title">Cosmic & Galactic Milestones 🌌</h2>
+    <div class="planet-grid">
+      <div class="planet-card"><h3>Distance Traveled Around Sun</h3><p id="sunDistance"></p></div>
+      <div class="planet-card"><h3>Milky Way Galactic Rotation</h3><p id="milkyWayProgress"></p></div>
+      <div class="planet-card"><h3>Andromeda Galaxy Proximity</h3><p id="andromedaCloser"></p></div>
+      <div class="planet-card"><h3>Cosmic Ray Passes Through You</h3><p id="cosmicRays"></p></div>
     </div>
   </section>
 
   <section class="final-section hidden">
     <div class="final-card">
-      <h2>
-        The universe became more beautiful on
-        August 10, 1998 ✨
-      </h2>
-      <p>
-        Thank you for existing, Saruna ❤️
-      </p>
+      <h2>The universe became infinitely more beautiful on<br>August 10, 1998 ✨</h2>
+      <p style="margin-top: 20px; font-size: 1.3rem;">Thank you for existing, Saruna ❤️</p>
     </div>
   </section>
 
@@ -396,7 +389,7 @@
 
     startBtn.addEventListener("click", () => {
       interactionTriggered = true;
-      music.play().catch(error => console.log("Audio waiting for system clearance:", error));
+      music.play().catch(error => console.log("Audio awaiting activation:", error));
 
       document.querySelectorAll(".hidden").forEach((el, index) => {
         setTimeout(() => {
@@ -406,40 +399,61 @@
 
       startBtn.innerText = "Her Universe Is Alive ✨";
       
-      // Start spawning the floating photo frames continuously once entered
       setInterval(createFloatingPhoto, 4000);
-      createFloatingPhoto(); // Spawn first immediately
+      createFloatingPhoto(); 
     });
 
-    // --- BIRTHDAY STATS ENGINE ---
+    // --- TRACKED FIXED DATE: AUGUST 10, 2026 ---
     const birthDate = new Date("1998-08-10");
-    const now = new Date();
-    const diff = now - birthDate;
+    const targetDate = new Date("2026-08-10"); 
+    const diff = targetDate - birthDate;
 
     const seconds = Math.floor(diff / 1000);
     const days = Math.floor(seconds / 86400);
-    const years = (days / 365.25).toFixed(1);
+    const years = 28; // Hard locked to exactly 28 years on her birthday
 
-    document.getElementById("age").innerText = `${years} Years`;
-    document.getElementById("heartbeats").innerText = `${(seconds * 1.2).toLocaleString()} beats`;
-    document.getElementById("blinks").innerText = `${(seconds / 4).toLocaleString()} blinks`;
-    document.getElementById("blood").innerText = `${(days * 7570).toLocaleString()} litres`;
-    document.getElementById("breaths").innerText = `${(seconds * 0.2).toLocaleString()} breaths`;
+    // 1. Biological Calculations
+    document.getElementById("age").innerText = `${years} Years Old`;
+    document.getElementById("heartbeats").innerText = `${(seconds * 1.15).toLocaleString()} beats`;
+    document.getElementById("blinks").innerText = `${(seconds * 0.25).toLocaleString()} blinks`;
+    document.getElementById("blood").innerText = `${(days * 7500).toLocaleString()} Litres`;
+    document.getElementById("breaths").innerText = `${(seconds * 0.23).toLocaleString()} breaths`;
+    document.getElementById("brainSignals").innerText = `${(days * 86000000).toLocaleString()} thoughts`;
+    document.getElementById("skinCells").innerText = `${(days * 40000000).toLocaleString()} shed`;
+    document.getElementById("liverCycles").innerText = `${(days * 450).toLocaleString()} filters`;
+
+    // 2. Animal Ages Calculations
     document.getElementById("dogYears").innerText = `${(years * 7).toFixed(0)} dog years`;
+    document.getElementById("catYears").innerText = `${(years * 4.2).toFixed(0)} cat years`;
+    document.getElementById("horseYears").innerText = `${(years * 3).toFixed(0)} horse years`;
+    document.getElementById("lionYears").innerText = `${(years * 3.5).toFixed(0)} lion years`;
 
-    document.getElementById("mercuryAge").innerText = `${(years / 0.24).toFixed(1)} years`;
-    document.getElementById("venusAge").innerText = `${(years / 0.62).toFixed(1)} years`;
-    document.getElementById("marsAge").innerText = `${(years / 1.88).toFixed(1)} years`;
-    document.getElementById("jupiterAge").innerText = `${(years / 11.86).toFixed(1)} years`;
+    // 3. Planetary Calculations
+    document.getElementById("mercuryAge").innerText = `${(years / 0.24).toFixed(1)} Mercury years`;
+    document.getElementById("venusAge").innerText = `${(years / 0.62).toFixed(1)} Venus years`;
+    document.getElementById("marsAge").innerText = `${(years / 1.88).toFixed(1)} Mars years`;
+    document.getElementById("jupiterAge").innerText = `${(years / 11.86).toFixed(1)} Jupiter years`;
+    document.getElementById("saturnAge").innerText = `${(years / 29.46).toFixed(1)} Saturn years`;
+    document.getElementById("uranusAge").innerText = `${(years / 84.01).toFixed(2)} Uranus years`;
+
+    // 4. Cosmic & Galactic Calculations
+    // Earth travels roughly 940 million km around the sun every single year
+    document.getElementById("sunDistance").innerText = `${((years * 940).toLocaleString())} Million km`;
+    // Solar system moves around the center of Milky Way at 230 km/s
+    document.getElementById("milkyWayProgress").innerText = `${(seconds * 230).toLocaleString()} km completed`;
+    // Andromeda and Milky Way fall toward each other at ~110 km/s
+    document.getElementById("andromedaCloser").innerText = `${(seconds * 110).toLocaleString()} km closer`;
+    // Trillions of cosmic ray particles slice through us harmlessly out in space
+    document.getElementById("cosmicRays").innerText = `${(seconds * 5000).toLocaleString()} particles`;
+
 
     // --- CONTINUOUS FLOATING PHOTO FRAMES ENGINE ---
     function createFloatingPhoto() {
-      if(!interactionTriggered) return; // Wait until they click enter universe
+      if(!interactionTriggered) return; 
       
       const frame = document.createElement("div");
       frame.classList.add("floating-frame");
       
-      // Pick a random picture from your 1 to 15 set
       const randomImgIndex = Math.floor(Math.random() * 15) + 1;
       
       const img = document.createElement("img");
@@ -448,20 +462,15 @@
       
       frame.appendChild(img);
       
-      // Distribute randomly across horizontal screen
       frame.style.left = Math.random() * 75 + "vw";
       
-      // Randomize speed so they drift uniquely
       const duration = 12 + Math.random() * 8;
       frame.style.animationDuration = duration + "s";
       
-      // Tilt them a bit randomly
       const randomTilt = (Math.random() * 20) - 10;
       frame.style.transform = `rotate(${randomTilt}deg)`;
       
       document.body.appendChild(frame);
-      
-      // Remove element out of memory once it goes off-screen
       setTimeout(() => { frame.remove(); }, duration * 1000);
     }
 
@@ -511,7 +520,6 @@
     }
     setInterval(createButterfly, 3500);
 
-    // Shooting Stars / Spontaneous Particles (Assigned behind content layer)
     function createShootingStar() {
       const star = document.createElement("div");
       star.style.position = "fixed";
@@ -519,7 +527,7 @@
       star.style.top = (Math.random() * 40) + "vh";
       star.style.fontSize = (16 + Math.random() * 14) + "px";
       star.style.pointerEvents = "none";
-      star.style.zIndex = "-1"; /* Behind main text panels */
+      star.style.zIndex = "-1"; 
       star.style.animation = "particleFade 2s ease-out forwards";
 
       star.innerHTML = ["✨", "☄️", "⭐"][Math.floor(Math.random() * 3)];
