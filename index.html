@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,6 +142,43 @@
       font-weight: 600;
     }
 
+    /* Cosmic timeline styling */
+    .cosmic-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      background: rgba(255,255,255,0.06);
+      border-left: 4px solid #ff4fd8;
+      padding: 20px 25px;
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .timeline-badge {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-content h4 {
+      color: #ffd6ff;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-content p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+    }
+
     /* --- PHYSICALLY FLOATING INTERACTIVE CLASSES --- */
     .physics-element {
       position: fixed;
@@ -250,7 +286,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Happy Birthday</h1>
-      <h2>Saru 💜</h2>
+      <h2>Saruna ❤️</h2>
       <p class="intro">A little universe made only for you.</p>
       <button id="startBtn">Enter Your Universe ✨</button>
     </div>
@@ -265,8 +301,7 @@
         Thank you for existing, for staying, for laughing with me,
         and for making this world brighter just by being in it.
         We promised to part only by death, and I mean that with all my heart.
-        Happy Birthday Saruna 🌹
-                              - Alan
+        Happy Birthday Saruna ❤️
       </p>
       <div class="name-meaning-box">
         <h4>The Meaning of Saruna ✨</h4>
@@ -274,6 +309,46 @@
           Saruna carries deep melodic origins. It points to a cosmic guide—someone who acts as a gentle, guiding light to others. It is also tied closely to stringed music, representing a soul that brings harmony, structural warmth, and deep alignment into the lives of everyone she touches.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION: AUGUST 10, 1998 COSMIC HISTORY -->
+  <section class="cosmic-history-section hidden">
+    <h2 class="section-title">Cosmic History: August 10, 1998 🌠</h2>
+    <div class="cosmic-timeline">
+      
+      <div class="timeline-item">
+        <div class="timeline-badge">☄️</div>
+        <div class="timeline-content">
+          <h4>The Perseid Meteor Shower Peaks</h4>
+          <p>As you drew your very first breath on Earth, our planet was slamming into the dense, icy debris stream of Comet Swift-Tuttle. This caused the sky to explode with hundreds of brilliant shooting stars per hour, welcoming you with a natural cosmic firework show.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">🪐</div>
+        <div class="timeline-content">
+          <h4>The Lunar Occultation & Conjunction of Jupiter</h4>
+          <p>On the exact night of August 10, 1998, the solar system aligned beautifully. The Waning Gibbous Moon passed incredibly close to Jupiter in our night sky, causing the giant planet to gleam with intense radiance right alongside the moon's surface.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">🚀</div>
+        <div class="timeline-content">
+          <h4>NASA's Cassini Speeds Past Earth</h4>
+          <p>While you were settling into your crib, humanity's most ambitious deep-space probe, Cassini, was executing deep space trajectory loops right in Earth's cosmic neighborhood, gathering blinding momentum to complete its multi-year voyage out to the ringed planet Saturn.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">👑</div>
+        <div class="timeline-content">
+          <h4>Global History Milestone</h4>
+          <p>Down on Earth, historic shifts were unfolding—most notably, the Royal Proclamation of Brunei took place on this exact date, officially establishing Prince Al-Muhtadee Billah as the Crown Prince to the throne.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -326,7 +401,7 @@
   <section class="final-section hidden">
     <div class="final-card">
       <h2>The universe became infinitely more beautiful on<br>August 10, 1998 ✨</h2>
-      <p style="margin-top: 20px; font-size: 1.3rem;">Thank you for existing, my saru 😘</p>
+      <p style="margin-top: 20px; font-size: 1.3rem;">Thank you for existing, Saruna ❤️</p>
     </div>
   </section>
 
@@ -335,7 +410,6 @@
     const music = document.getElementById("bgMusic");
     let interactionTriggered = false;
 
-    // Interactive Touch/Mouse coordinates tracking
     const touchPointer = { x: -1000, y: -1000 };
     const elementsArray = [];
 
@@ -351,7 +425,6 @@
 
       startBtn.innerText = "Her Universe Is Alive ✨";
       
-      // Start generating the floating photo frames periodically after entering
       setInterval(() => createPhysicsObject('photo'), 5000);
       createPhysicsObject('photo');
     });
@@ -393,9 +466,7 @@
 
 
     // --- UNIFIED JAVASCRIPT PHYSICS ENGINE FOR REPELLING ELEMENTS ---
-    
     function createPhysicsObject(type) {
-      // Allow particles constantly, but restrict photos until presentation universe start
       if(type === 'photo' && !interactionTriggered) return;
 
       const domElement = document.createElement("div");
@@ -424,18 +495,15 @@
         img.src = `${randomImgIndex}.jpg`;
         domElement.appendChild(img);
         
-        // Match standard polaroid responsive box constraints
         width = window.innerWidth < 768 ? 140 : 180;
         height = window.innerWidth < 768 ? 145 : 200;
       }
 
-      // Physics initial coordinates (Spawns safely below viewport boundary)
       const x = Math.random() * (window.innerWidth - width);
       const y = window.innerHeight + 100 + (Math.random() * 100);
       
-      // Floating motion variables
       const velocityX = (Math.random() * 1) - 0.5;
-      const velocityY = -(1 + Math.random() * 1.5); // Drifts up steadily
+      const velocityY = -(1 + Math.random() * 1.5); 
       const rotationalAngle = (Math.random() * 20) - 10;
       const rotationSpeed = (Math.random() * 0.4) - 0.2;
 
@@ -461,9 +529,7 @@
       });
     }
 
-    // Main Engine Frame Loop (Handles continuous floating, edge boundaries, and repulsion)
     function updatePhysicsEngine() {
-      // Continuous background replenishment triggers
       if (elementsArray.filter(e => e.type === 'heart').length < 15) createPhysicsObject('heart');
       if (elementsArray.filter(e => e.type === 'bubble').length < 20) createPhysicsObject('bubble');
       if (elementsArray.filter(e => e.type === 'butterfly').length < 4) createPhysicsObject('butterfly');
@@ -471,35 +537,29 @@
       for (let i = elementsArray.length - 1; i >= 0; i--) {
         const obj = elementsArray[i];
 
-        // 1. Natural upward drifting speeds
         obj.x += obj.vx + obj.repelledX;
         obj.y += obj.vy + obj.repelledY;
         obj.angle += obj.spin;
 
-        // Apply friction to the repel impact so it gently slows down after being pushed
         obj.repelledX *= 0.92;
         obj.repelledY *= 0.92;
 
-        // 2. Repelling Math when near Mouse or Finger Touch
         const centerX = obj.x + (obj.w / 2);
         const centerY = obj.y + (obj.h / 2);
         const distanceX = centerX - touchPointer.x;
         const distanceY = centerY - touchPointer.y;
         const netDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-        // Repel boundary zone radius size (Pushes objects within 180px distance)
         const activeRadius = 180; 
         if (netDistance < activeRadius) {
-          const pushForce = (activeRadius - netDistance) / activeRadius; // Maximum closer force strength
+          const pushForce = (activeRadius - netDistance) / activeRadius; 
           const angle = Math.atan2(distanceY, distanceX);
           
-          // Inject speed bursts directly into objects away from touch point
-          const intensity = obj.type === 'photo' ? 6 : 12; // Photos push slightly heavier due to mass illusion
+          const intensity = obj.type === 'photo' ? 6 : 12; 
           obj.repelledX += Math.cos(angle) * pushForce * intensity;
           obj.repelledY += Math.sin(angle) * pushForce * intensity;
         }
 
-        // 3. Screen Side Bounds Check (Bounce off side left/right screen edges)
         if (obj.x < 0) {
           obj.x = 0;
           obj.vx *= -1;
@@ -508,10 +568,8 @@
           obj.vx *= -1;
         }
 
-        // Apply real-time transforms safely using hardware-accelerated Translate3d
         obj.el.style.transform = `translate3d(${obj.x}px, ${obj.y}px, 0px) rotate(${obj.angle}deg)`;
 
-        // 4. Garbage Clean-up out of sight (Removes elements once floating safely clear off top of page layout)
         if (obj.y < -300) {
           obj.el.remove();
           elementsArray.splice(i, 1);
@@ -521,7 +579,6 @@
       requestAnimationFrame(updatePhysicsEngine);
     }
 
-    // Input Listeners tracking Touch & Mouse Movements safely across interactive sections
     function trackMovement(event) {
       if (event.touches && event.touches.length > 0) {
         touchPointer.x = event.touches[0].clientX;
@@ -533,7 +590,6 @@
     }
 
     function clearMovement() {
-      // Instantly clear position coordinates when finger/cursor leaves target surface area
       touchPointer.x = -1000;
       touchPointer.y = -1000;
     }
@@ -544,7 +600,6 @@
     window.addEventListener('mouseleave', clearMovement);
     window.addEventListener('touchend', clearMovement);
 
-    // Bootstrap continuous loop animation tracker instantly
     requestAnimationFrame(updatePhysicsEngine);
 
 
@@ -568,4 +623,5 @@
   </script>
 </body>
 </html>
+
 
